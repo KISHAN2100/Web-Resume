@@ -4,43 +4,470 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Details - Real-Time E-Commerce App</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        main {
+            display: block;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 2.5rem;
+            color: #ffffff;
+        }
+
+        header p {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+
+        section {
+            background-color: #ffffff;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e1e4e8;
+            position: relative;
+            z-index: 2;
+            display: block;
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            color: #2c3e50;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding: 0.8rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        li:before {
+            content: "•";
+            color: #3498db;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        a {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: #3498db;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        a:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        iframe {
+            width: 100%;
+            max-width: 560px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: block;
+            margin: 0 auto;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e1e4e8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            header {
+                padding: 1.5rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            iframe {
+                height: 250px;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin: 20px 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            min-height: 315px;
+        }
+
+        p, li, h1, h2 {
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: block !important;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #3498db;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 20px 0;
+            border: none;
+        }
+
+        .download-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* New animated styles */
+        .project-hero {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            width: 100%;
+            padding: 0 20px;
+            z-index: 2;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('path/to/project-screenshot.jpg') center/cover;
+            opacity: 0.2;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e1e4e8;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+            border-left: 2px solid #3498db;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 3rem;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .floating-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #3498db;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        section {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        /* Add responsive adjustments */
+        @media (max-width: 768px) {
+            .project-hero {
+                height: 300px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Real-Time E-Commerce Android Application</h1>
-            <p><strong>Technologies Used:</strong> Android Studio, Firebase, Java, XML</p>
-        </header>
+        <div class="project-hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <h1>Real-Time E-Commerce Android Application</h1>
+                <div class="tech-stack">
+                    <span class="tech-item">Android Studio</span>
+                    <span class="tech-item">Firebase</span>
+                    <span class="tech-item">Java</span>
+                    <span class="tech-item">XML</span>
+                </div>
+            </div>
+        </div>
+
         <main>
             <section>
-                <h2>Project Description</h2>
+                <h2>Project Overview</h2>
                 <p>This project involved developing a fully functional e-commerce application for Android that allows users to browse products, manage their cart, and place orders in real-time.</p>
             </section>
+
             <section>
                 <h2>Key Features</h2>
-                <ul>
-                    <li>User authentication with Firebase</li>
-                    <li>Real-time database integration for product management</li>
-                    <li>Intuitive user interface designed with XML</li>
-                    <li>Product search and cart management</li>
-                    <li>Order placement functionality</li>
-                </ul>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-user-shield feature-icon"></i>
+                        <h3>User Authentication</h3>
+                        <p>Secure login and registration system using Firebase Authentication</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-database feature-icon"></i>
+                        <h3>Real-time Database</h3>
+                        <p>Live product updates and inventory management</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-mobile-alt feature-icon"></i>
+                        <h3>Intuitive UI</h3>
+                        <p>User-friendly interface designed with XML</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-shopping-cart feature-icon"></i>
+                        <h3>Cart Management</h3>
+                        <p>Easy-to-use shopping cart with real-time updates</p>
+                    </div>
+                </div>
             </section>
+
             <section>
-                <h2>Download</h2>
-                <p>You can download the APK from the following link:</p>
-                <a href="path/to/your/app.apk" download>Download APK</a>
+                <h2>Project Statistics</h2>
+                <div class="project-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">1000+</div>
+                        <p>Downloads</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4.8</div>
+                        <p>User Rating</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <p>Daily Active Users</p>
+                    </div>
+                </div>
             </section>
+
+            <section>
+                <h2>Development Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Phase 1</div>
+                        <p>Initial planning and UI/UX design</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Phase 2</div>
+                        <p>Core functionality implementation</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Phase 3</div>
+                        <p>Testing and optimization</p>
+                    </div>
+                </div>
+            </section>
+
             <section>
                 <h2>Project Video</h2>
-                <p>Watch the project video below:</p>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/ObclD7ofHgc" frameborder="0" allowfullscreen></iframe>
+                <p>Watch the project demonstration below:</p>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/ObclD7ofHgc" frameborder="0" allowfullscreen></iframe>
+                </div>
             </section>
+
+            <div class="cta-section">
+                <h2>Try it yourself!</h2>
+                <p>Download the app and experience the future of mobile shopping</p>
+                <a href="path/to/your/app.apk" class="download-btn" download>Download APK</a>
+            </div>
         </main>
+
         <footer>
-            <p><a href="index.html">Back to Projects</a></p>
+            <p><a href="index.html" class="download-btn">Back to Projects</a></p>
         </footer>
+    </div>
+
+    <div class="floating-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fas fa-arrow-up"></i>
     </div>
 </body>
 </html> 

@@ -245,21 +245,142 @@ a:hover {
 }
 
 .quick-link {
-    display: flex; /* Use flex to center the icon */
-    align-items: center; /* Center the icon vertically */
-    justify-content: center; /* Center the icon horizontally */
-    width: 30%; /* Set a width for the button */
-    padding: 10px; /* Padding for the button */
-    background: #00509e; /* Medium blue for quick links */
-    color: #fff; /* Button text color */
-    text-decoration: none; /* Remove underline */
-    border-radius: 5px; /* Rounded corners */
-    transition: background 0.3s; /* Smooth background transition */
-    margin: 5px; /* Space between buttons */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 15px 20px;
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin: 10px 0;
+    border: none;
+    z-index: 1;
 }
 
+.quick-link i {
+    margin-right: 10px;
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+/* Gradient overlay effect */
+.quick-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #2575fc, #6a11cb);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+/* Shine effect */
+.quick-link::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: 0.5s;
+    opacity: 0;
+}
+
+/* Hover effects */
 .quick-link:hover {
-    background: #003366; /* Darker blue on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(106, 17, 203, 0.3);
+    color: #fff;
+}
+
+.quick-link:hover::before {
+    opacity: 1;
+}
+
+.quick-link:hover::after {
+    left: 100%;
+    opacity: 0.7;
+}
+
+.quick-link:hover i {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* Active state */
+.quick-link:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 10px rgba(106, 17, 203, 0.2);
+}
+
+/* Dark mode adjustments */
+body.dark-mode .quick-link {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: #fff;
+}
+
+body.dark-mode .quick-link:hover {
+    background: linear-gradient(45deg, #2575fc, #6a11cb);
+}
+
+/* Add pulse animation for icons */
+@keyframes iconPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.quick-link:hover i {
+    animation: iconPulse 1s ease infinite;
+}
+
+/* Add text glow effect on hover */
+.quick-link:hover {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Add ripple effect on click */
+.quick-link.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.quick-link.ripple::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, transparent 70%);
+    transform: scale(0);
+    transition: transform 0.5s;
+    top: var(--y);
+    left: var(--x);
+    transform-origin: center;
+}
+
+.quick-link.ripple:active::before {
+    transform: scale(3);
+    opacity: 0;
 }
 
 .common-container {

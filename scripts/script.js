@@ -274,6 +274,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Add ripple effect to quick links
+    document.querySelectorAll('.quick-link').forEach(button => {
+        button.classList.add('ripple');
+        
+        button.addEventListener('mousedown', function(e) {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            button.style.setProperty('--x', x + 'px');
+            button.style.setProperty('--y', y + 'px');
+        });
+    });
 });
 
 // Add typing animation for the hero text
