@@ -216,6 +216,64 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show content wrapper
         document.querySelector('.content-wrapper').style.opacity = '1';
     }, 3000);
+
+    // Smooth scroll functionality for CTA buttons
+    const ctaButtons = document.querySelectorAll('.hero-cta .cta-button');
+    
+    ctaButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = button.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                // Add highlight effect to the target section
+                targetSection.classList.add('highlight');
+                
+                // Smooth scroll to the section
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Remove highlight effect after animation
+                setTimeout(() => {
+                    targetSection.classList.remove('highlight');
+                }, 1000);
+                
+                // Add click effect to the button
+                button.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    button.style.transform = 'scale(1)';
+                }, 200);
+            }
+        });
+        
+        // Add hover effect
+        button.addEventListener('mouseenter', () => {
+            button.style.transform = 'translateY(-3px)';
+        });
+        
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Add this to ensure the contact button works
+    const contactButton = document.querySelector('a[href="#contact"]');
+    if (contactButton) {
+        contactButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            const sidebar = document.querySelector('.sidebar');
+            if (sidebar) {
+                sidebar.scrollIntoView({ behavior: 'smooth' });
+                sidebar.classList.add('highlight');
+                setTimeout(() => {
+                    sidebar.classList.remove('highlight');
+                }, 1000);
+            }
+        });
+    }
 });
 
 // Add typing animation for the hero text
@@ -244,5 +302,62 @@ function type() {
 }
 
 type();
+
+// Intersection Observer for section animations
+const observerOptions = {
+    threshold: 0.2,
+    rootMargin: '0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions);
+
+// Observe all sections
+document.querySelectorAll('section').forEach(section => {
+    observer.observe(section);
+});
+
+// Smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Add particle background to hero section
+particlesJS('particles-js', {
+    particles: {
+        number: { value: 80 },
+        color: { value: '#ffffff' },
+        shape: { type: 'circle' },
+        opacity: {
+            value: 0.5,
+            random: true
+        },
+        size: {
+            value: 3,
+            random: true
+        },
+        move: {
+            enable: true,
+            speed: 2,
+            direction: 'none',
+            random: true,
+            out_mode: 'out'
+        }
+    }
+});
 
 
