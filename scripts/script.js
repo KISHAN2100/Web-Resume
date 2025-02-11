@@ -288,6 +288,150 @@ document.addEventListener('DOMContentLoaded', () => {
             button.style.setProperty('--y', y + 'px');
         });
     });
+
+    // Contact Form Functionality
+    const contactForm = document.querySelector('.contact-form');
+    const messageInput = document.querySelector('#message');
+    const charCounter = document.querySelector('.char-counter');
+    const formStatus = document.querySelector('.form-status');
+    const submitBtn = document.querySelector('.submit-btn');
+    const successCheckmark = document.querySelector('.success-checkmark');
+
+    // Character counter for message
+    if (messageInput && charCounter) {
+        messageInput.addEventListener('input', () => {
+            const remaining = messageInput.value.length;
+            charCounter.textContent = `${remaining}/500`;
+            
+            if (remaining >= 450) {
+                charCounter.classList.add('limit');
+            } else {
+                charCounter.classList.remove('limit');
+            }
+        });
+    }
+
+    // Form submission
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Add loading state
+            submitBtn.classList.add('loading');
+            
+            // Simulate form submission
+            try {
+                await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API call
+                
+                // Show success message
+                formStatus.textContent = 'Message sent successfully!';
+                formStatus.className = 'form-status success show';
+                
+                // Show checkmark animation
+                successCheckmark.classList.add('show');
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    formStatus.classList.remove('show');
+                    successCheckmark.classList.remove('show');
+                }, 5000);
+                
+            } catch (error) {
+                // Show error message
+                formStatus.textContent = 'Failed to send message. Please try again.';
+                formStatus.className = 'form-status error show';
+            } finally {
+                // Remove loading state
+                submitBtn.classList.remove('loading');
+            }
+        });
+    }
+
+    // Add ripple effect to submit button
+    if (submitBtn) {
+        submitBtn.addEventListener('mousedown', (e) => {
+            const rect = submitBtn.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const ripple = document.createElement('span');
+            ripple.className = 'ripple';
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+            
+            submitBtn.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 1000);
+        });
+    }
+
+    // Contact popup functionality
+    const contactPopup = document.getElementById('contact-popup');
+    const contactButtons = document.querySelectorAll('a[href="#contact"]');
+    const closePopup = document.querySelector('.close-popup');
+
+    function openContactPopup() {
+        contactPopup.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling when popup is open
+    }
+
+    function closeContactPopup() {
+        contactPopup.classList.remove('show');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Open popup when contact buttons are clicked
+    contactButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            openContactPopup();
+        });
+    });
+
+    // Close popup when close button is clicked
+    if (closePopup) {
+        closePopup.addEventListener('click', closeContactPopup);
+    }
+
+    // Close popup when clicking outside the form
+    contactPopup.addEventListener('click', (e) => {
+        if (e.target === contactPopup) {
+            closeContactPopup();
+        }
+    });
+
+    // Close popup with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && contactPopup.classList.contains('show')) {
+            closeContactPopup();
+        }
+    });
+
+    // After successful form submission, close the popup
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // ... existing form submission code ...
+
+            try {
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // ... existing success handling ...
+                
+                // Close popup after 5 seconds
+                setTimeout(() => {
+                    closeContactPopup();
+                }, 5000);
+                
+            } catch (error) {
+                // ... existing error handling ...
+            }
+        });
+    }
 });
 
 // Add typing animation for the hero text
