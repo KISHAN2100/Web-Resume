@@ -36,8 +36,7 @@
     font-size: 1.2rem;
     margin-top: 20px;
     background: linear-gradient(45deg, #6a11cb, #2575fc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;   
 }
 
 /* Lottie animation container */

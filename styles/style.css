@@ -478,22 +478,135 @@ body.dark-mode .project-item {
 
 .layout {
     display: grid;
-    grid-template-columns: 300px 1fr; /* Sidebar and main content */
+    grid-template-columns: 300px 1fr;
     gap: 2rem;
     padding: 2rem;
-    max-width: 1400px; /* Increased max-width */
+    max-width: 1400px;
     margin: 0 auto;
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar {
-    background: var(--bg-color);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 20px;
     height: fit-content;
-    position: relative;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    background: linear-gradient(135deg, rgba(106, 17, 203, 0.1), rgba(37, 117, 252, 0.1));
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     z-index: 1;
-    transition: transform 0.3s ease;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.common-container {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.common-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.common-container h2 {
+    color: #6a11cb;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.common-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    border-radius: 3px;
+}
+
+.common-container p {
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.common-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.common-container ul li {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.common-container ul li::before {
+    content: '•';
+    color: #6a11cb;
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .layout {
+    background: rgba(30, 30, 30, 0.5);
+}
+
+body.dark-mode .sidebar {
+    background: linear-gradient(135deg, rgba(106, 17, 203, 0.2), rgba(37, 117, 252, 0.2));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .common-container {
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.5), rgba(30, 30, 30, 0.3));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .common-container p {
+    color: #e0e0e0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .sidebar {
+        position: static;
+        max-height: none;
+        margin-bottom: 2rem;
+    }
+
+    .common-container {
+        padding: 1.5rem;
+    }
+
+    .common-container h2 {
+        font-size: 1.75rem;
+    }
 }
 
 .sidebar .contact-info, .sidebar .quick-links {
@@ -2714,4 +2827,1004 @@ body.dark-mode .close-popup:hover {
 
 .contact-popup.show .contact-popup-content {
     animation: popupIn 0.3s ease forwards;
+}
+
+/* Mobile-First Responsive Design */
+@media (max-width: 768px) {
+    /* Base layout adjustments */
+    .content-wrapper {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    .container {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Hero section adjustments */
+    .hero-section {
+        min-height: 100vh;
+        padding: 1rem;
+    }
+
+    .hero-content {
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    h1[data-text] {
+        font-size: 2.5rem;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .typing-text {
+        font-size: 1.2rem;
+        margin: 10px 0;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .cta-button {
+        width: 100%;
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+
+    /* Navigation adjustments */
+    .main-nav {
+        background: rgba(0, 0, 0, 0.9);
+    }
+
+    .nav-menu {
+        padding: 1rem;
+    }
+
+    .nav-link {
+        padding: 0.75rem 1rem;
+    }
+
+    /* Layout structure */
+    .layout {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    /* Sidebar adjustments */
+    .sidebar {
+        position: relative;
+        width: 100%;
+        margin: 1rem 0;
+        padding: 1rem;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    /* Main content adjustments */
+    main {
+        width: 100%;
+        padding: 0;
+    }
+
+    section {
+        margin: 1.5rem 0;
+        padding: 1rem;
+    }
+
+    /* Project cards adjustments */
+    .project-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0.5rem;
+    }
+
+    .project-card {
+        height: 350px;
+        margin: 0.5rem 0;
+    }
+
+    .project-card-front,
+    .project-card-back {
+        padding: 1rem;
+    }
+
+    .project-card-front img {
+        height: 50%;
+    }
+
+    /* Skills section adjustments */
+    .skills-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .skill-category {
+        padding: 1rem;
+    }
+
+    /* Quick links adjustments */
+    .quick-links-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .quick-link {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    /* Footer adjustments */
+    footer {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    /* Dark mode toggle position */
+    #mode-toggle {
+        right: 1rem;
+        top: 1rem;
+    }
+
+    /* Animations and effects adjustments */
+    .fade-up, .scale-in, .slide-in-left, .slide-in-right {
+        transform: none;
+        opacity: 1;
+    }
+
+    /* Particle background adjustment */
+    #particles-js {
+        opacity: 0.3;
+    }
+
+    /* Common container adjustments */
+    .common-container {
+        margin: 1rem 0;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+
+    /* Typography adjustments */
+    h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    /* List adjustments */
+    ul {
+        padding-left: 1rem;
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Additional adjustments for extra small devices */
+@media (max-width: 480px) {
+    h1[data-text] {
+        font-size: 2rem;
+    }
+
+    .typing-text {
+        font-size: 1rem;
+    }
+
+    .project-card {
+        height: 300px;
+    }
+
+    .tech-stack span {
+        font-size: 0.8rem;
+        padding: 3px 10px;
+    }
+}
+
+/* Ensure smooth transitions */
+* {
+    transition: all 0.3s ease;
+}
+
+/* Fix for iOS Safari 100vh issue */
+@supports (-webkit-touch-callout: none) {
+    .hero-section {
+        min-height: -webkit-fill-available;
+    }
+}
+
+/* Enhanced Mobile Optimizations */
+@media (max-width: 768px) {
+    /* Optimize page load */
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Base container adjustments */
+    .app-layout {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        padding: 0;
+    }
+
+    /* Improved hero section for mobile */
+    .hero-section {
+        height: 100vh; /* Use viewport height */
+        padding: 0 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 2rem 1rem;
+        text-align: center;
+    }
+
+    /* Project section improvements */
+    .project-container {
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    .project-card {
+        width: 100%;
+        margin: 0.5rem 0;
+        perspective: none; /* Remove 3D effect on mobile */
+    }
+
+    .project-card-inner {
+        transform-style: preserve-3d;
+        transition: transform 0.5s ease;
+    }
+
+    /* Optimize animations for mobile */
+    @media (prefers-reduced-motion: reduce) {
+        .project-card:hover .project-card-inner {
+            transform: none;
+        }
+        
+        .fade-up, .scale-in, .slide-in-left, .slide-in-right {
+            animation: none;
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    /* Improve touch targets */
+    .nav-link, 
+    .quick-link, 
+    .project-link,
+    .cta-button {
+        min-height: 44px;
+        padding: 12px 20px;
+        margin: 5px 0;
+    }
+
+    /* Optimize text for mobile readability */
+    p, li {
+        font-size: 16px;
+        line-height: 1.6;
+        letter-spacing: 0.3px;
+    }
+
+    /* Fix scrolling issues */
+    .content-wrapper {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: hidden;
+    }
+
+    /* Optimize images and media */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Improve form elements for mobile */
+    input, 
+    textarea, 
+    button {
+        font-size: 16px; /* Prevent iOS zoom on focus */
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Fix floating navigation */
+    .main-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    /* Optimize sidebar for mobile */
+    .sidebar {
+        position: relative;
+        width: 100%;
+        margin: 1rem 0;
+        padding: 1rem;
+        box-shadow: none;
+    }
+
+    /* Fix particle background performance */
+    #particles-js {
+        display: none; /* Disable on mobile for better performance */
+    }
+
+    /* Optimize grid layouts */
+    .grid-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    /* Fix sticky positioning */
+    .sticky {
+        position: relative !important;
+        top: auto !important;
+    }
+
+    /* Optimize transitions */
+    * {
+        transition-duration: 0.3s;
+        transition-timing-function: ease;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    /* Further optimize for very small screens */
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .project-card {
+        height: auto;
+        min-height: 300px;
+    }
+
+    .tech-stack {
+        flex-wrap: wrap;
+    }
+
+    .tech-stack span {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+        margin: 2px;
+    }
+}
+
+/* Fix iOS-specific issues */
+@supports (-webkit-touch-callout: none) {
+    .hero-section {
+        min-height: -webkit-fill-available;
+    }
+    
+    .main-nav {
+        padding-top: env(safe-area-inset-top);
+    }
+}
+
+/* Optimize touch interactions */
+@media (hover: none) {
+    .project-card:hover .project-card-inner {
+        transform: none;
+    }
+
+    .nav-link:hover,
+    .quick-link:hover {
+        transform: none;
+    }
+}
+
+.certificate-link {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #6a11cb;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+.certificate-link:hover {
+    color: #2575fc;
+}
+
+.certificate-link i {
+    margin-right: 4px;
+}
+
+.certificate-dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+.certificate-dropdown span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.certificate-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 200px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    margin-top: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.certificate-dropdown:hover .certificate-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.certificate-menu a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.certificate-menu a:hover {
+    background-color: rgba(106, 17, 203, 0.1);
+    color: #6a11cb;
+}
+
+/* Dark mode styles */
+body.dark-mode .certificate-menu {
+    background: #2a2a2a;
+}
+
+body.dark-mode .certificate-menu a {
+    color: #e0e0e0;
+}
+
+body.dark-mode .certificate-menu a:hover {
+    background-color: rgba(106, 17, 203, 0.2);
+    color: #bb86fc;
+}
+
+.certificates-section {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.certificate-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.certificate-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.certificate-card:hover {
+    transform: translateY(-5px);
+}
+
+.certificate-card h3 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.certificate-card p {
+    margin-bottom: 1.5rem;
+    color: #666;
+}
+
+.view-certificate-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.view-certificate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(106, 17, 203, 0.2);
+}
+
+.view-certificate-btn.disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.view-certificate-btn.disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.8rem 1.5rem;
+    background: #003366;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.back-btn:hover {
+    background: #004480;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .certificate-card {
+    background: #2a2a2a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .certificate-card h3 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .certificate-card p {
+    color: #aaa;
+}
+
+body.dark-mode .back-btn {
+    background: #6a11cb;
+}
+
+body.dark-mode .back-btn:hover {
+    background: #5a0fb0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .certificate-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .certificate-card {
+        padding: 1.5rem;
+    }
+}
+
+.certificate-viewer {
+    width: 100%;
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.certificate-viewer embed {
+    border: none;
+    border-radius: 8px;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .certificate-viewer {
+    background: #2a2a2a;
+}
+
+/* Certificate page specific styles */
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.certificate-item {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+}
+
+.certificate-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(106, 17, 203, 0.15);
+}
+
+.certificate-item h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.certificate-item p {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.certificate-item.coming-soon {
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px dashed #ccc;
+}
+
+.certificate-item .quick-link.disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.certificate-item .quick-link.disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, #003366, #004480);
+    border-radius: 10px;
+    margin-top: 2rem;
+}
+
+.copyright {
+    color: white;
+    margin: 0;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .certificate-item {
+    background: #2a2a2a;
+}
+
+body.dark-mode .certificate-item h3 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .certificate-item p {
+    color: #aaa;
+}
+
+body.dark-mode .certificate-item.coming-soon {
+    background: rgba(42, 42, 42, 0.8);
+    border-color: #444;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .certificates-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .certificate-item {
+        padding: 1.5rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+
+/* Add these styles for disabled project links */
+.project-link.disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Adjust the project card for certificates */
+.project-card .tech-stack span {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+}
+
+/* Dark mode adjustments */
+body.dark-mode .project-link.disabled {
+    background: #444;
+    color: #888;
+}
+
+.page-header {
+    background: linear-gradient(45deg, #003366, #004480);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+/* Dark mode adjustment */
+body.dark-mode .page-header {
+    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+}
+
+/* Modern Certificate Styles */
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.cert-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cert-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.cert-icon {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.cert-content {
+    padding: 2rem;
+}
+
+.cert-content h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.cert-issuer {
+    color: #666;
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+}
+
+.cert-date {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.cert-details {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.cert-details li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.cert-details li i {
+    color: #6a11cb;
+    margin-right: 0.5rem;
+}
+
+.cert-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.cert-btn {
+    flex: 1;
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cert-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+}
+
+.cert-btn.disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.cert-btn.disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.cert-link {
+    padding: 0.8rem;
+    color: #6a11cb;
+    border: 2px solid #6a11cb;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.cert-link:hover {
+    background: #6a11cb;
+    color: white;
+}
+
+.header-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .cert-card {
+    background: #2a2a2a;
+}
+
+body.dark-mode .cert-content h3 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .cert-issuer {
+    color: #bbb;
+}
+
+body.dark-mode .cert-date {
+    color: #999;
+}
+
+body.dark-mode .cert-details li {
+    color: #ccc;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .certificates-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .cert-actions {
+        flex-direction: column;
+    }
+
+    .cert-icon {
+        padding: 1.5rem;
+        font-size: 2rem;
+    }
+}
+
+.project-hint {
+    text-align: center;
+    color: #6a11cb;
+    font-size: 1.1rem;
+    margin: 1rem 0 2rem;
+    animation: pulse 2s infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.project-hint i {
+    font-size: 1.2rem;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#projects h2 {
+    color: #6a11cb;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+#projects h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    border-radius: 3px;
+}
+
+.project-hint {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.project-hint i {
+    color: #6a11cb;
+    animation: pulse 2s infinite;
 }

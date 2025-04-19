@@ -63,19 +63,21 @@
             position: relative;
             z-index: 2;
             display: block;
+            overflow: hidden;
         }
 
-        h2 {
+        section h2 {
             color: #2c3e50;
             border-bottom: 2px solid #3498db;
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
+            margin-top: 0;
+            text-align: left;
         }
 
-        p {
-            color: #2c3e50;
-            line-height: 1.6;
-            margin-bottom: 1rem;
+        section p {
+            margin-bottom: 1.5rem;
+            text-align: left;
         }
 
         ul {
@@ -164,10 +166,12 @@
 
         .video-container {
             position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
+            width: 50%;
+            padding-bottom: 28.125%; /* 56.25% of 50% width */
             height: 0;
-            margin: 20px 0;
+            margin: 1rem auto;
+            background-color: #ffffff;
+            border-radius: 8px;
         }
 
         .video-container iframe {
@@ -176,7 +180,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            min-height: 315px;
+            border: none;
+            border-radius: 8px;
         }
 
         p, li, h1, h2 {
@@ -298,6 +303,7 @@
         .timeline {
             position: relative;
             padding: 2rem 0;
+            text-align: left;
         }
 
         .timeline-item {
@@ -411,24 +417,6 @@
             </section>
 
             <section>
-                <h2>Project Statistics</h2>
-                <div class="project-stats">
-                    <div class="stat-card">
-                        <div class="stat-number">1000+</div>
-                        <p>Downloads</p>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">4.8</div>
-                        <p>User Rating</p>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">50+</div>
-                        <p>Daily Active Users</p>
-                    </div>
-                </div>
-            </section>
-
-            <section>
                 <h2>Development Timeline</h2>
                 <div class="timeline">
                     <div class="timeline-item">
@@ -453,12 +441,6 @@
                     <iframe src="https://www.youtube.com/embed/ObclD7ofHgc" frameborder="0" allowfullscreen></iframe>
                 </div>
             </section>
-
-            <div class="cta-section">
-                <h2>Try it yourself!</h2>
-                <p>Download the app and experience the future of mobile shopping</p>
-                <a href="path/to/your/app.apk" class="download-btn" download>Download APK</a>
-            </div>
         </main>
 
         <footer>

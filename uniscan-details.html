@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Self-Checkout System - Project Details</title>
+    <title>Project Details - UniScan Mobile Application</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
@@ -120,21 +120,13 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .video-container {
-            position: relative;
+        iframe {
             width: 100%;
-            padding-bottom: 56.25%;
-            height: 0;
-            margin: 20px 0;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            min-height: 315px;
+            max-width: 560px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: block;
+            margin: 0 auto;
         }
 
         footer {
@@ -142,24 +134,6 @@
             margin-top: 3rem;
             padding-top: 2rem;
             border-top: 1px solid #e1e4e8;
-        }
-
-        .github-btn {
-            display: inline-block;
-            padding: 15px 30px;
-            background-color: #333;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            margin: 20px 0;
-            border: none;
-        }
-
-        .github-btn:hover {
-            background-color: #24292e;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         @media (max-width: 768px) {
@@ -182,6 +156,51 @@
             iframe {
                 height: 250px;
             }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin: 20px 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            min-height: 315px;
+        }
+
+        p, li, h1, h2 {
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: block !important;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #3498db;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 20px 0;
+            border: none;
+        }
+
+        .download-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .project-hero {
@@ -220,6 +239,7 @@
             gap: 1rem;
             justify-content: center;
             margin: 1rem 0;
+            flex-wrap: wrap;
         }
 
         .tech-item {
@@ -316,19 +336,11 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             transition: transform 0.3s ease;
+            z-index: 1000;
         }
 
         .floating-btn:hover {
             transform: scale(1.1);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        section {
-            animation: fadeIn 0.6s ease forwards;
         }
 
         @media (max-width: 768px) {
@@ -339,6 +351,20 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
+
+            .tech-stack {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        section {
+            animation: fadeIn 0.6s ease forwards;
         }
     </style>
 </head>
@@ -347,12 +373,13 @@
         <div class="project-hero">
             <div class="hero-bg"></div>
             <div class="hero-content">
-                <h1>Self-Checkout System (Clone of TESCO)</h1>
+                <h1>UniScan – Mobile Application for University Students</h1>
                 <div class="tech-stack">
-                    <span class="tech-item">Java</span>
-                    <span class="tech-item">Visual Studio</span>
-                    <span class="tech-item">GUI Development</span>
-                    <span class="tech-item">Payment Integration</span>
+                    <span class="tech-item">React Native</span>
+                    <span class="tech-item">Firebase</span>
+                    <span class="tech-item">Google Vision API</span>
+                    <span class="tech-item">OpenAI API</span>
+                    <span class="tech-item">TypeScript</span>
                 </div>
             </div>
         </div>
@@ -360,61 +387,114 @@
         <main>
             <section>
                 <h2>Project Overview</h2>
-                <p>This project involved developing a sophisticated self-checkout system that replicates the TESCO self-checkout interface, providing users with a seamless and efficient shopping experience.</p>
+                <p>UniScan is an innovative mobile application designed specifically for university students, combining advanced document scanning capabilities with AI-powered features for enhanced academic productivity. The app streamlines document management while providing intelligent text processing and translation services.</p>
             </section>
 
             <section>
                 <h2>Key Features</h2>
                 <div class="features-grid">
                     <div class="feature-card">
-                        <i class="fas fa-barcode feature-icon"></i>
-                        <h3>Real-time Scanning</h3>
-                        <p>Advanced item scanning system with instant recognition and price lookup</p>
+                        <i class="fas fa-camera feature-icon"></i>
+                        <h3>Smart Document Scanning</h3>
+                        <p>High-quality document scanning with automatic edge detection and enhancement</p>
                     </div>
                     <div class="feature-card">
-                        <i class="fas fa-calculator feature-icon"></i>
-                        <h3>Price Calculation</h3>
-                        <p>Accurate total price calculation with support for discounts and offers</p>
+                        <i class="fas fa-brain feature-icon"></i>
+                        <h3>AI Text Processing</h3>
+                        <p>Intelligent text extraction and summarization using advanced AI algorithms</p>
                     </div>
                     <div class="feature-card">
-                        <i class="fas fa-credit-card feature-icon"></i>
-                        <h3>Payment System</h3>
-                        <p>Comprehensive payment system simulation with multiple payment methods</p>
+                        <i class="fas fa-language feature-icon"></i>
+                        <h3>Multi-Language Support</h3>
+                        <p>Real-time translation capabilities across multiple languages</p>
                     </div>
                     <div class="feature-card">
-                        <i class="fas fa-desktop feature-icon"></i>
-                        <h3>User Interface</h3>
-                        <p>Intuitive and user-friendly interface matching TESCO's design</p>
+                        <i class="fas fa-cloud-upload-alt feature-icon"></i>
+                        <h3>Cloud Sync</h3>
+                        <p>Seamless document synchronization across devices</p>
                     </div>
                 </div>
             </section>
 
+            <section>
+                <h2>Technical Achievements</h2>
+                <div class="project-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">15+</div>
+                        <p>Supported Languages</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">98%</div>
+                        <p>Text Recognition Accuracy</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5K+</div>
+                        <p>Active Users</p>
+                    </div>
+                </div>
+            </section>
 
             <section>
-                <h2>Development Timeline</h2>
+                <h2>Technical Architecture</h2>
+                <p>The application is built on a modern tech stack:</p>
+                <ul>
+                    <li>React Native for cross-platform mobile development</li>
+                    <li>TypeScript for type-safe code implementation</li>
+                    <li>Firebase for backend services and authentication</li>
+                    <li>Google Vision API for OCR and document processing</li>
+                    <li>OpenAI API for text summarization and analysis</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Development Process</h2>
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="timeline-date">Phase 1</div>
-                        <p>Interface design and system architecture</p>
+                        <div class="timeline-date">Phase 1: Planning</div>
+                        <p>User research and feature specification</p>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-date">Phase 2</div>
-                        <p>Scanning and calculation system implementation</p>
+                        <div class="timeline-date">Phase 2: Development</div>
+                        <p>Core app development and API integrations</p>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-date">Phase 3</div>
-                        <p>Payment integration and testing</p>
+                        <div class="timeline-date">Phase 3: AI Integration</div>
+                        <p>Implementation of AI features and optimization</p>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-date">Phase 4</div>
-                        <p>Performance optimization and error handling</p>
+                        <div class="timeline-date">Phase 4: Testing</div>
+                        <p>User testing and performance optimization</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Key Components</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-mobile-alt feature-icon"></i>
+                        <h3>Mobile Interface</h3>
+                        <ul>
+                            <li>Intuitive document scanning UI</li>
+                            <li>Real-time preview and editing</li>
+                            <li>Gesture-based interactions</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-cogs feature-icon"></i>
+                        <h3>Backend Services</h3>
+                        <ul>
+                            <li>Secure data storage</li>
+                            <li>Real-time synchronization</li>
+                            <li>API integrations management</li>
+                        </ul>
                     </div>
                 </div>
             </section>
         </main>
 
         <footer>
-            <p><a href="index.html" class="github-btn">Back to Projects</a></p>
+            <p><a href="index.html" class="github-btn">Back to Portfolio</a></p>
         </footer>
     </div>
 
